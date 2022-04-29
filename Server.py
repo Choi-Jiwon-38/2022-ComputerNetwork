@@ -1,30 +1,21 @@
-import socket # module import
+import socket
 
-serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+HOST = "127.0.0.1" # 127.0.0.1 == localhost == 내 컴퓨터
+PORT = 3091
 
-# SOCK_STREAM : socket of TCP
-# AF_INET : address format, IPv4 <- commonly used
+ADDRESS = (HOST, PORT)
 
-
-HOST = socket.gethostbyname(socket.gethostname())
-print(HOST)
-
-serverSocket.bind(HOST)
-
-serverSocket.listen()
-clientSocket, address = serverSocket.acept()
-
-print('Connected by', address)
-
-while 1:
-    data = clientSocket.recv(1024)
-
-    if not data:
-        break
-
-    print('Received from', address, data.decode())
-
-    clientSocket.sendall(data)
-
-clientSocket.close()
-serverSocket.close()
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as SERVER:
+    SERVER.bind(ADDRESS)
+    SERVER.listen()
+    print("Server is started ...")
+    CONNECTION, ADDRESS = SERVER.accept()
+    print("Connected client = {} : {}".format(ADDRESS[0], ADDRESS[1]))
+    while True:
+        DATA = CONNECTION.recv(1024)
+        if DATA.decode() == "q":
+            print("Quit connection")
+            
+            exit()
+        CONNECTION.send(DATA)
+        print("client >> ", DATA.decode())
