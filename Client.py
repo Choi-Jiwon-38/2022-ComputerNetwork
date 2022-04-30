@@ -8,7 +8,7 @@ ADDRESS = (IP, PORT)
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as CLIENT:
     CLIENT.connect(ADDRESS)
     while True:
-        MESSAGE = input().encode()
+        MESSAGE = input("<< ").encode()
         CLIENT.send(MESSAGE)
         DATA = CLIENT.recv(1024)
-        print(DATA.decode())
+        print(">>", DATA.decode())
