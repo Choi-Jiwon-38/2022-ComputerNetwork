@@ -1,7 +1,5 @@
-from ast import Try
 import socket
 import requests
-
 
 HOST = "127.0.0.1" # localhost == 내 컴퓨터
 PORT = 3091
@@ -21,75 +19,46 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as SERVER:
     
     while True:
         DATA = CONNECTION.recv(1024)
-        
-        if DATA.decode() == "q":
-            print("Quit connection")
-            break
-        
-        FUNC, URL = DATA.decode().split()
+
         JSON = {"outer": {"inner": "value"}}
 
-
         print("client >> ", DATA.decode())
-
-        # Python3의 각 명령어 수행 뒤, 파일 입출력을 사용하기 위해 변수 설정
-        fileName = FUNC + "_" + URL.replace("http://", "") + ".txt" 
-
-        if FUNC == "GET":
-            RESPONSE = requests.get(URL)
         
-            try:
-                f = open(fileName, 'w')
-                print('success - w')
-            except:
-                f = open(fileName, 'x')
-                print('success - x')
-            f.write(str(RESPONSE))
-            f.close()
-
-        elif FUNC == "HEAD":
-            RESPONSE = requests.head(URL)
         
-            try:
-                f = open(fileName, 'w')
-                print('success - w')
-            except:
-                f = open(fileName, 'x')
-                print('success - x')
-            f.write(str(RESPONSE))
-            f.close()
+        try:
+            FUNC, URL = DATA.decode().split()
 
-        elif FUNC == "POST":
-            RESPONSE = requests.post(URL, data = JSON)
+            if FUNC == "GET":
+                RESPONSE = requests.get(URL)
 
-            try:
-                f = open(fileName, 'w')
-                print('success - w')
-            except:
-                f = open(fileName, 'x')
-                print('success - x')
-            f.write(str(RESPONSE))
-            f.close()
+            elif FUNC == "HEAD":
+                RESPONSE = requests.head(URL)
 
-        elif FUNC == "PUT":
-            RESPONSE = requests.put(URL, data = JSON)
+            elif FUNC == "POST":
+                RESPONSE = requests.post(URL, data = JSON)
 
-            try:
-                f = open(fileName, 'w')
-                print('success - w')
-            except:
-                f = open(fileName, 'x')
-                print('success - x')
-            f.write(str(RESPONSE))
-            f.close()
+            elif FUNC == "PUT":
+                RESPONSE = requests.put(URL, data = JSON)
 
-        else:
+        except:
             RESPONSE = "usage: GET/HEAD/POST/PUT (ADDRESS)"
+
 
         if RESPONSE.status_code == 200:
             MESSAGE = "200 OK"
+
+        elif RESPONSE.status_code == 301:
+            MESSAGE = "301 Moved Permanently"
+
         elif RESPONSE.status_code == 400:
-            MESSAGE = "404 Bad Request"
+            MESSAGE = "400 Bad Request"
+        
+        elif RESPONSE.status_code == 404:
+            MESSAGE = "404 Not Found"
+
+        elif RESPONSE.status_code == 505:
+            MESSAGE = "505 HTTP Version Not Supported"
+
         else:
             MESSAGE = str(RESPONSE.status_code) # 아래에서 encode를 하기 위해 str로 형변환
 
