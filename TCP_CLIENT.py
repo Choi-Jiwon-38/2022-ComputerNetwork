@@ -47,7 +47,7 @@ post_content = 'Cat is meow meow, Dog is bow bow'
 request_message = 'POST /bowbow.txt HTTP/1.1\r\n'
 request_message += 'Host: 127.0.0.1:12000\r\n'
 request_message += 'Content-type: text/plain\r\n'
-request_message += 'Content-length: ' + str(len(put_content)) +'\r\n\n'
+request_message += 'Content-length: ' + str(len(post_content)) +'\r\n\n'
 request_message += post_content + '\r\n\n'
 
 create_socket_and_send_message(request_message)
@@ -57,7 +57,7 @@ post_content = 'Kookmin university computer science'
 request_message = 'POST /introduce-myself.txt HTTP/1.1\r\n'
 request_message += 'Host: 127.0.0.1:12000\r\n'
 request_message += 'Content-type: text/plain\r\n'
-request_message += 'Content-length: ' + str(len(put_content)) +'\r\n\n'
+request_message += 'Content-length: ' + str(len(post_content)) +'\r\n\n'
 request_message += post_content + '\r\n\n'
 
 create_socket_and_send_message(request_message)
