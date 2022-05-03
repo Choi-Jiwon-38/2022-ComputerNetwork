@@ -20,57 +20,57 @@ def create_socket_and_send_message(request_message):
 request_message = 'GET /meow.html HTTP/1.1\r\n'
 request_message += 'Host: 127.0.0.1:12000\r\n'
 request_message += 'User-Agent: Safari/537.36\r\n'
-request_message += 'Connection: Keep-Alive\n\n'
+request_message += 'Connection: Keep-Alive\r\n\n'
 
 create_socket_and_send_message(request_message)
 
 # GET method - 404 Not Found
-request_message = 'GET /mmmmmmeow.html HTTP/1.1\n'
-request_message += 'Host: 127.0.0.1:12000\n'
-request_message += 'User-Agent: Safari/537.36\n'
-request_message += 'Connection: Keep-Alive\n'
+request_message = 'GET /mmmmmmeow.html HTTP/1.1\r\n'
+request_message += 'Host: 127.0.0.1:12000\r\n'
+request_message += 'User-Agent: Safari/537.36\r\n'
+request_message += 'Connection: Keep-Alive\r\n'
 
 create_socket_and_send_message(request_message)
 
 # PUT method - 201 Create 
 put_content = 'Hello my name is Choi Jiwon'
-request_message = 'PUT /introduce-myself.txt HTTP/1.1\n'
-request_message += 'Host: 127.0.0.1:12000\n'
-request_message += 'Content-type: text/plain\n'
-request_message += 'Content-length: ' + str(len(put_content)) +'\n\n'
-request_message += put_content + '\n\n'
+request_message = 'PUT /introduce-myself.txt HTTP/1.1\r\n'
+request_message += 'Host: 127.0.0.1:12000\r\n'
+request_message += 'Content-type: text/plain\r\n'
+request_message += 'Content-length: ' + str(len(put_content)) +'\r\n\n'
+request_message += put_content + '\r\n\n'
 
 create_socket_and_send_message(request_message)
 
 # POST method - 201 Create
 post_content = 'Cat is meow meow, Dog is bow bow'
-request_message = 'POST /bowboew.txt HTTP/1.1\n'
-request_message += 'Host: 127.0.0.1:12000\n'
-request_message += 'Content-type: text/plain\n'
-request_message += 'Content-length: ' + str(len(put_content)) +'\n\n'
-request_message += post_content + '\n\n'
+request_message = 'POST /bowbow.txt HTTP/1.1\r\n'
+request_message += 'Host: 127.0.0.1:12000\r\n'
+request_message += 'Content-type: text/plain\r\n'
+request_message += 'Content-length: ' + str(len(put_content)) +'\r\n\n'
+request_message += post_content + '\r\n\n'
 
 create_socket_and_send_message(request_message)
 
 # POST method - 200 OK 
 post_content = 'Kookmin university computer science'
-request_message = 'POST /introduce-myself.txt HTTP/1.1\n'
-request_message += 'Host: 127.0.0.1:12000\n'
-request_message += 'Content-type: text/plain\n'
-request_message += 'Content-length: ' + str(len(put_content)) +'\n\n'
-request_message += post_content + '\n\n'
+request_message = 'POST /introduce-myself.txt HTTP/1.1\r\n'
+request_message += 'Host: 127.0.0.1:12000\r\n'
+request_message += 'Content-type: text/plain\r\n'
+request_message += 'Content-length: ' + str(len(put_content)) +'\r\n\n'
+request_message += post_content + '\r\n\n'
 
 create_socket_and_send_message(request_message)
 
 # OPTIONS method - 200 OK 
-request_message = 'OPTIONS * HTTP/1.1\n'
-request_message += 'Host: www.localhost:' + str(serverPort) +'\n'
-request_message += 'Accept: *\n\n'
+request_message = 'OPTIONS * HTTP/1.1\r\n'
+request_message += 'Host: www.localhost:' + str(serverPort) +'\r\n'
+request_message += 'Accept: *\r\n\n'
 
 create_socket_and_send_message(request_message)
 
 # DELETE method - 200 OK 
-request_message = 'DELETE /introduce-myself.txt HTTP/1.1\n'
-request_message += 'Host: 127.0.0.1:12000\n\n'
+request_message = 'DELETE /introduce-myself.txt HTTP/1.1\r\n'
+request_message += 'Host: 127.0.0.1:12000\r\n\n'
 
 create_socket_and_send_message(request_message)
