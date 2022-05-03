@@ -42,7 +42,7 @@ request_message += put_content + '\r\n\n'
 
 create_socket_and_send_message(request_message)
 
-# POST method - 201 Create
+# POST method - 201 Create or 200 OK
 post_content = 'Cat is meow meow, Dog is bow bow'
 request_message = 'POST /bowbow.txt HTTP/1.1\r\n'
 request_message += 'Host: 127.0.0.1:12000\r\n'
@@ -74,3 +74,12 @@ request_message = 'DELETE /introduce-myself.txt HTTP/1.1\r\n'
 request_message += 'Host: 127.0.0.1:12000\r\n\n'
 
 create_socket_and_send_message(request_message)
+
+# HEAD method - 200 OK
+request_message = 'HEAD /meow.html HTTP/1.1\r\n'
+request_message += 'Host: 127.0.0.1:12000\r\n'
+request_message += 'User-Agent: Safari/537.36\r\n'
+request_message += 'Connection: Keep-Alive\r\n\n'
+
+create_socket_and_send_message(request_message)
+
